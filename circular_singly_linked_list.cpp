@@ -77,16 +77,41 @@ void print_list(struct node *tail)
 int main()
 {
     struct node *tail = NULL;
-    tail= add_at_empty(tail, 35);
+    int data,n,i;
+    cout<< "Enter how many elements you want to add: ";
+    cin>>n;
+    if(n==0)
+        cout<< "linked list is empty.";
+    else if(n==1)
+    {
+        cout<<"Enter 1 no element: ";
+        cin>> data;
+        tail= add_at_empty(tail, data);
+        print_list(tail);
+    }
+    else
+    {
+        cout<<"Enter the 1st element: ";
+        cin>> data;
+        tail= add_at_empty(tail, data);
 
-    tail=add_at_end(tail,55);
-    tail=add_at_end(tail,75);
+        for(i=1;i<n;i++)
+        {
+            cout<<"Enter "<<i+1<<" no element: ";
+            cin>>data;
+            tail=add_at_end(tail,data);
+        }
+        print_list(tail);
+    }
 
-    add_at_beg(tail,25);
+/*
+    add_at_beg(tail,data);
 
-    tail=add_at_pos(tail,45,3);
-    tail=add_at_pos(tail,65,5);
+    tail=add_at_pos(tail,data,3);
+    tail=add_at_pos(tail,data,5);
 
     print_list(tail);
 
+*/
+    return 0;
 }
