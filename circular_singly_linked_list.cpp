@@ -63,6 +63,19 @@ struct node *add_at_end(struct node *tail, int data)
     return tail;
 };
 
+int count_elements(struct node *tail)
+{
+    int cnt=0;
+    struct node *ptr=tail->next;
+    do
+    {
+        ptr=ptr->next;
+        cnt++;
+    }while(ptr!=tail->next);
+    return cnt;
+}
+
+//printing elements
 void print_list(struct node *tail)
 {
     struct node* temp;
@@ -103,15 +116,22 @@ int main()
         }
         print_list(tail);
     }
+        cout<<endl;
+        int cnt = count_elements(tail);
+        cout<< "Number of node in this list is: "<<cnt<<endl;
 
-/*
-    add_at_beg(tail,data);
-
-    tail=add_at_pos(tail,data,3);
-    tail=add_at_pos(tail,data,5);
-
-    print_list(tail);
-
-*/
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
