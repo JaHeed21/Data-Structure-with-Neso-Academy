@@ -63,6 +63,19 @@ struct node *add_at_end(struct node *tail, int data)
     return tail;
 };
 
+int count_elements(struct node *tail)
+{
+    int cnt=0;
+    struct node *ptr=tail->next;
+    do
+    {
+        ptr=ptr->next;
+        cnt++;
+    }while(ptr!=tail->next);
+    return cnt;
+}
+
+//printing elements
 void print_list(struct node *tail)
 {
     struct node* temp;
@@ -77,16 +90,48 @@ void print_list(struct node *tail)
 int main()
 {
     struct node *tail = NULL;
-    tail= add_at_empty(tail, 35);
+    int data,n,i;
+    cout<< "Enter how many elements you want to add: ";
+    cin>>n;
+    if(n==0)
+        cout<< "linked list is empty.";
+    else if(n==1)
+    {
+        cout<<"Enter 1 no element: ";
+        cin>> data;
+        tail= add_at_empty(tail, data);
+        print_list(tail);
+    }
+    else
+    {
+        cout<<"Enter the 1st element: ";
+        cin>> data;
+        tail= add_at_empty(tail, data);
 
-    tail=add_at_end(tail,55);
-    tail=add_at_end(tail,75);
+        for(i=1;i<n;i++)
+        {
+            cout<<"Enter "<<i+1<<" no element: ";
+            cin>>data;
+            tail=add_at_end(tail,data);
+        }
+        print_list(tail);
+    }
+        cout<<endl;
+        int cnt = count_elements(tail);
+        cout<< "Number of node in this list is: "<<cnt<<endl;
 
-    add_at_beg(tail,25);
-
-    tail=add_at_pos(tail,45,3);
-    tail=add_at_pos(tail,65,5);
-
-    print_list(tail);
-
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
