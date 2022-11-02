@@ -44,7 +44,22 @@ struct node* add_at_beg(struct node *head, int data)
     temp->next=head;
     head=temp;
     return head;
+}
 
+//adding a node at an intermediate position
+void add_at_pos(struct node* head, int data, int pos)
+{
+    struct node* temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=NULL;
+    
+    while(pos>1)
+    {
+        head=head->next;
+        pos--;
+    }
+    temp->next=head->next;
+    head->next=temp;
 }
 
 //printing entire list
@@ -65,10 +80,10 @@ int main()
 
     head=add_at_beg(head,10);
 
-    add_at_end(head,30);
     add_at_end(head,40);
+    add_at_end(head,50);
 
-
+    add_at_pos(head,30,2);
+    
     print_list(head);
-
 }
