@@ -52,7 +52,7 @@ void add_at_pos(struct node* head, int data, int pos)
     struct node* temp=(struct node*)malloc(sizeof(struct node));
     temp->data=data;
     temp->next=NULL;
-    
+
     while(pos>1)
     {
         head=head->next;
@@ -60,6 +60,35 @@ void add_at_pos(struct node* head, int data, int pos)
     }
     temp->next=head->next;
     head->next=temp;
+}
+
+//deleting an intermediate node of the linked list
+struct node* del_at_pos(struct node *head, int pos)
+{
+    struct node* temp=head;
+    struct node* temp2=head;
+
+
+    if(pos==1)
+    {
+        head=head->next;
+        free(temp);
+        temp=NULL;
+        return head;
+    }
+    else
+    {
+        while(pos>2)
+        {
+            head=head->next;
+            pos--;
+        }
+        temp=head->next;
+        head->next=temp->next;
+        free(temp);
+        temp=NULL;
+        return temp2;
+    }
 }
 
 //printing entire list
@@ -83,7 +112,12 @@ int main()
     add_at_end(head,40);
     add_at_end(head,50);
 
+    cout<< "Before deletion: ";
     add_at_pos(head,30,2);
-    
+    print_list(head);
+    cout<<endl;
+
+    cout<< "After Deletion: ";
+    head=del_at_pos(head, 1);
     print_list(head);
 }
