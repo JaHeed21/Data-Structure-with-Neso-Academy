@@ -1,3 +1,4 @@
+//#include<bits/stdc++.h>
 #include<iostream>
 #include<stdlib.h>
 using namespace std;
@@ -145,45 +146,116 @@ void count_node(struct node* head)
 //printing entire list
 void print_list(struct node *head)
 {
-    while(head!=NULL)
+    if(head==NULL)
+        cout<<"There is no node in the list."<<endl;
+    else
     {
-        cout<<head->data<< " ";
-        head=head->next;
+        while(head!=NULL)
+        {
+            cout<<head->data<< " ";
+            head=head->next;
+        }
+        cout<<endl;
     }
 }
 
 int main()
 {
     struct node *head=NULL;
+//adding data dynamically by users:
+    int x;
+    int data;
+    cout<< "Enter how many node you want to add: ";
+    cin>>x;
+    if(x==0)
+        print_list(head);
+    else if(x==1)
+    {
+        cout<< "Enter data for first node: ";
+        cin>> data;
+        head=add_at_empty(head, data);
+        print_list(head);
+    }
+    else
+    {
+        int i=1;
+        cout<< "Enter data for first node: ";
+        cin>> data;
+        head=add_at_empty(head, data);
+        while(i<x)
+        {
+            cout<< "Enter data for "<<i+1<<" node: ";
+            cin>> data;
+            add_at_end(head,data);
+            i++;
+        }
+        print_list(head);
+    }
 
-    head= add_at_empty(head,20);
+    while(1)
+    {
+        cout<< "1. Add element at front."<<endl
+            << "2. Add element at particular function."<<endl
+            << "3. Add element at last."<<endl
+            << "4. Count the nodes of the list."<<endl
+            << "5. Delete element at last."<<endl
+            << "0. Quit"<<endl;
+        cout<< "Enter your Choice: ";
+        int choice;
+        cin>>choice;
+        switch(choice)
+        {
+        case 1:
+            cout<< "Enter the value you want to add: ";
+            cin>>data;
+            head=add_at_beg(head,data);
+            cout<<endl;
+            print_list(head);
+            break;
 
-    head=add_at_beg(head,10);
+        case 2:
+            cout<< "Enter data you want to add: ";
+            int pos;
+            cin>>data;
+            cout<< "After which position you want to add: ";
+            cin>>pos;
+            add_at_pos(head,data, pos);
+            cout<<endl;
+            print_list(head);
+            break;
 
-    add_at_end(head,30);
-    add_at_end(head,40);
-    add_at_end(head,50);
-    add_at_end(head,60);
-    add_at_end(head,70);
-    
-    
+        case 3:
+            cout<< "Enter data you want to add: ";
+            cin>> data;
+            add_at_end(head,data);
+            cout<<endl;
+            print_list(head);
+            break;
 
-    head=delFirst(head);
+        case 4:
+            count_node(head);
+            break;
 
-    delLast(head);
+        case 5:
+            delLast(head);
+            cout<<endl;
+            print_list(head);
+            break;
 
-    print_list(head);
-    cout<<endl;
-    
-    count_node(head);
-    
-/*
-    cout<< "Before deletion: ";
-    add_at_pos(head,30,2);
-    print_list(head);
-    cout<<endl;
-    cout<< "After Deletion: ";
-    head=del_at_pos(head, 1);
-    print_list(head);
-*/
+        case 0:
+            exit(1);
+            break;
+
+        default:
+            cout<< "You Entered  wrong choice."<<endl;
+        }
+
+    }
+
+    return 0;
 }
+
+
+
+
+
