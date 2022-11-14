@@ -198,7 +198,9 @@ int main()
             << "2. Add element at particular function."<<endl
             << "3. Add element at last."<<endl
             << "4. Count the nodes of the list."<<endl
-            << "5. Delete element at last."<<endl
+            << "5. Delete element at first."<<endl
+            << "6. Delete element at particular position."<<endl
+            << "7. Delete element at last."<<endl
             << "0. Quit"<<endl;
         cout<< "Enter your Choice: ";
         int choice;
@@ -210,7 +212,7 @@ int main()
             cin>>data;
             head=add_at_beg(head,data);
             cout<<endl;
-            print_list(head);
+
             break;
 
         case 2:
@@ -221,7 +223,7 @@ int main()
             cin>>pos;
             add_at_pos(head,data, pos);
             cout<<endl;
-            print_list(head);
+
             break;
 
         case 3:
@@ -229,7 +231,7 @@ int main()
             cin>> data;
             add_at_end(head,data);
             cout<<endl;
-            print_list(head);
+
             break;
 
         case 4:
@@ -237,9 +239,18 @@ int main()
             break;
 
         case 5:
+            head=delFirst(head);
+            break;
+
+        case 6:
+            cout<< "Enter the position of element you want to delete: ";
+            cin>>pos;
+            head= del_at_pos(head, pos);
+            break;
+
+        case 7:
             delLast(head);
             cout<<endl;
-            print_list(head);
             break;
 
         case 0:
@@ -249,7 +260,7 @@ int main()
         default:
             cout<< "You Entered  wrong choice."<<endl;
         }
-
+        print_list(head);
     }
 
     return 0;
