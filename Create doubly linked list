@@ -20,7 +20,72 @@ struct node* add_empty(struct node *head, int data)
         head=temp;
     }
     else
+    {#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+struct node
+{
+    struct node *prev;
+    int data;
+    struct node *next;
+};
+
+struct node* add_empty(struct node *head, int data)
+{
+    struct node *temp=(struct node*)malloc(sizeof(struct node));
+    temp->prev=NULL;
+    temp->data=data;
+    temp->next=NULL;
+    if(head==NULL)
     {
+        head=temp;
+    }
+    else
+    {
+        return 0;
+    }
+    return head;
+}
+
+struct node *add_at_beg(struct node *head, int data)
+{
+    struct node *temp= (struct node*)malloc(sizeof(struct node));
+    temp->prev=NULL;
+    temp->data= data;
+    temp->next= NULL;
+
+    temp->next=head;
+    head->prev=temp;
+    head=temp;
+    return head;
+};
+
+void print_list(struct node *head)
+{
+    if(head==NULL)
+    {
+        cout<< "There is no node in the list "<<endl;
+    }
+    while(head!=NULL){
+        cout<<head->data<< "  ";
+        head=head->next;
+    }
+}
+
+int main()
+{
+    struct node* head=NULL;
+    head=add_empty(head, 20);
+
+    head=add_at_beg(head, 10);
+
+
+    print_list(head);
+
+
+}
+
         return 0;
     }
     return head;
